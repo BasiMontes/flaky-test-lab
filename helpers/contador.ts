@@ -16,6 +16,10 @@ export function leerContador(ruta: string): number {
 
 export function incrementarContador(ruta: string): number {
   const nuevo = leerContador(ruta) + 1;
-  fs.writeFileSync(ruta, JSON.stringify({ valor: nuevo }));
+  // Escritura atómica: se escribe en un archivo temporal y se renombra.
+  // Así otra worker nunca lee un archivo a medio escribir.
+  const temporal = ruta + '.' + process.pid + '.' + Math.random().toString(36).slice(2) + '.tmp';
+  fs.writeFileSync(temporal, JSON.stringify({ valor: nuevo }));
+  fs.renameSync(temporal, ruta);
   return nuevo;
 }
