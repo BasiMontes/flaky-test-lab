@@ -1,0 +1,17 @@
+{
+  "name": "flaky-test-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Laboratorio de flaky tests: catálogo de causas de inestabilidad, reproducción mínima y medición por repetición",
+  "scripts": {
+    "test": "playwright test",
+    "test:a1": "playwright test tests/A1-espera-fija.spec.ts --repeat-each=100 --reporter=line"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

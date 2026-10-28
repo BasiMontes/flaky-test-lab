@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>A1 · Espera fija</title>
+</head>
+<body>
+  <h1>A1 · Espera fija</h1>
+  <button id="cargar">Cargar resultado</button>
+  <p id="resultado"></p>
+  <script>
+    // La respuesta tarda entre 0 y 1500 ms, aleatorio en cada clic.
+    document.getElementById('cargar').addEventListener('click', () => {
+      const retraso = Math.floor(Math.random() * 1500);
+      setTimeout(() => {
+        document.getElementById('resultado').textContent = 'Resultado listo';
+      }, retraso);
+    });
+  </script>
+</body>
+</html>
