@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>C1 · Dependencia de la hora</title>
+</head>
+<body>
+  <h1>C1 · Dependencia de la hora</h1>
+  <button id="registrar">Registrar</button>
+  <p id="resultado"></p>
+  <script>
+    // Muestra la hora y el minuto en el momento del clic.
+    const dosDigitos = (n) => String(n).padStart(2, '0');
+    document.getElementById('registrar').addEventListener('click', () => {
+      const ahora = new Date();
+      document.getElementById('resultado').textContent =
+        'Registrado a las ' + dosDigitos(ahora.getHours()) + ':' + dosDigitos(ahora.getMinutes());
+    });
+  </script>
+</body>
+</html>
