@@ -9,12 +9,12 @@ Laboratorio de flaky tests. Cada causa de inestabilidad se reproduce con una pá
 
 ## Catálogo
 
-Estado: **A1 en preparación**. Las tasas se rellenarán solo con mediciones reales.
+Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 
 ### A. Tiempo y sincronización
 | ID | Causa | Estado | Tasa de fallo (medida) |
 |----|-------|--------|------------------------|
-| A1 | Espera fija en lugar de espera por condición | Implementada, pendiente de medir | — |
+| A1 | Espera fija en lugar de espera por condición | Reproducida | 59 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
 | A2 | Carrera en la UI tras una petición | Pendiente | — |
 | A3 | Timeout ajustado a la carga | Pendiente | — |
 | A4 | Elemento que se mueve durante el clic | Pendiente | — |
