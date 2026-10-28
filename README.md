@@ -16,7 +16,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 |----|-------|--------|------------------------|
 | A1 | Espera fija en lugar de espera por condición | Reproducida | 59 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
 | A2 | Carrera en la UI tras una petición | Reproducida | 93 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
-| A3 | Timeout ajustado a la carga | Pendiente | — |
+| A3 | Timeout ajustado a la carga | Implementada, pendiente de medir | — |
 | A4 | Elemento que se mueve durante el clic | Pendiente | — |
 | A5 | Re-render que invalida el locator | Pendiente | — |
 

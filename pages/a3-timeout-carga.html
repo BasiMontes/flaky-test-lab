@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>A3 · Timeout ajustado a la carga</title>
+</head>
+<body>
+  <h1>A3 · Timeout ajustado a la carga</h1>
+  <button id="cargar">Cargar panel</button>
+  <div id="panel" hidden>Panel listo</div>
+  <script>
+    // Simulación de una carga de 2000 a 6000 ms, aleatoria en cada clic.
+    document.getElementById('cargar').addEventListener('click', () => {
+      const retraso = 2000 + Math.floor(Math.random() * 4000);
+      setTimeout(() => {
+        document.getElementById('panel').hidden = false;
+      }, retraso);
+    });
+  </script>
+</body>
+</html>
