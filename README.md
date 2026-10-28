@@ -23,8 +23,8 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 ### B. Estado y aislamiento
 | ID | Causa | Estado | Tasa de fallo (medida) |
 |----|-------|--------|------------------------|
-| B1 | Estado compartido entre pruebas | Implementada, pendiente de medir. La versión inestable incluye una espera de 200 ms entre el incremento y la comprobación, como decisión de diseño para abrir la ventana de la carrera | — |
-| B5 | Escritura no atómica de un archivo compartido (lectura de contenido a medias) | Reproducida en la primera medición de B1 (1 fallo de 100, SyntaxError al leer JSON). Corregida con escritura atómica (archivo temporal + renombrado). Pendiente de medir | — |
+| B1 | Estado compartido entre pruebas | Reproducida. Incluye una espera de 200 ms entre el incremento y la comprobación, como decisión de diseño para abrir la ventana | 47 de 100 ejecuciones fallan (medido 28/10/2026, macOS). En todos los fallos el valor leído es el esperado + 1. Versión estable: 0 de 100 |
+| B5 | Escritura no atómica de un archivo compartido (lectura de contenido a medias) | Reproducida (1 fallo de 100 en la primera medición de B1, SyntaxError al leer JSON). Corregida con escritura atómica; en la medición posterior, 0 errores de lectura en 200 ejecuciones | 1 de 100 antes de la corrección; 0 de 200 después (una sola medición) |
 | B2 | Dependencia del orden de ejecución | Pendiente | — |
 | B3 | Datos no únicos en ejecución paralela | Pendiente | — |
 | B4 | Cookies o localStorage persistentes | Pendiente | — |
