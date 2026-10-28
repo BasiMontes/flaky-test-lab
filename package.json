@@ -7,7 +7,8 @@
     "test": "playwright test",
     "test:a1": "playwright test tests/A1-espera-fija.spec.ts --repeat-each=100 --reporter=line",
     "test:a2": "playwright test tests/A2-carrera-peticion.spec.ts --repeat-each=100 --reporter=line",
-    "test:a3": "playwright test tests/A3-timeout-carga.spec.ts --repeat-each=100 --reporter=line"
+    "test:a3": "playwright test tests/A3-timeout-carga.spec.ts --repeat-each=100 --reporter=line",
+    "test:b1": "playwright test tests/B1-estado-compartido.spec.ts --repeat-each=100 --reporter=line"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",

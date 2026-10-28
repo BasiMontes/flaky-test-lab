@@ -23,7 +23,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 ### B. Estado y aislamiento
 | ID | Causa | Estado | Tasa de fallo (medida) |
 |----|-------|--------|------------------------|
-| B1 | Estado compartido entre pruebas | Pendiente | — |
+| B1 | Estado compartido entre pruebas | Implementada, pendiente de medir | — |
 | B2 | Dependencia del orden de ejecución | Pendiente | — |
 | B3 | Datos no únicos en ejecución paralela | Pendiente | — |
 | B4 | Cookies o localStorage persistentes | Pendiente | — |
