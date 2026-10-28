@@ -32,7 +32,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 ### C. Entorno y datos externos
 | ID | Causa | Estado | Tasa de fallo (medida) |
 |----|-------|--------|------------------------|
-| C1 | Dependencia de la hora o la fecha | Implementada, pendiente de medir. Ventana de 2 s en ambas versiones; fallo esperado en la inestable ≈ 2 de cada 60 ejecuciones (depende de que cambie el minuto) | — |
+| C1 | Dependencia de la hora o la fecha | Reproducida. Ventana de 2 s en ambas versiones; el fallo depende de que cambie el minuto en esa ventana | 3 de 100 ejecuciones fallan (medido 28/10/2026, macOS), en todos los casos el minuto siguiente. Versión estable: 0 de 100 |
 | C2 | Datos aleatorios sin semilla | Pendiente | — |
 | C3 | Red o API externa inestable | Pendiente | — |
 | C4 | Resolución o tamaño de ventana | Pendiente | — |
