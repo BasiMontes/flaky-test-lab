@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>A2 · Carrera tras petición</title>
+</head>
+<body>
+  <h1>A2 · Carrera tras petición</h1>
+  <p>Usuario cargado: <span id="usuario">cargando…</span></p>
+  <button id="guardar">Guardar</button>
+  <p id="resultado"></p>
+  <script>
+    // Simulación de una petición que tarda entre 0 y 1000 ms en devolver el usuario.
+    // Modo inestable (por defecto): el botón está habilitado desde el principio.
+    // Modo estable (?estable=1): el botón se habilita cuando llega la respuesta.
+    const btn = document.getElementById('guardar');
+    const estable = new URLSearchParams(location.search).has('estable');
+    let usuario = null;
+
+    if (estable) btn.disabled = true;
+
+    setTimeout(() => {
+      usuario = 'Ana';
+      document.getElementById('usuario').textContent = usuario;
+      if (estable) btn.disabled = false;
+    }, Math.floor(Math.random() * 1000));
+
+    btn.addEventListener('click', () => {
+      document.getElementById('resultado').textContent =
+        'Guardado: ' + (usuario ?? 'pendiente');
+    });
+  </script>
+</body>
+</html>
