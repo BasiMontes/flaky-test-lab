@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>C2 · Datos aleatorios</title>
+</head>
+<body>
+  <h1>C2 · Registro de socios</h1>
+  <input id="edad" type="number" placeholder="Edad">
+  <button id="enviar">Registrar</button>
+  <p id="resultado"></p>
+  <script>
+    // Regla de negocio: solo se registran mayores de edad.
+    document.getElementById('enviar').addEventListener('click', () => {
+      const edad = Number(document.getElementById('edad').value);
+      document.getElementById('resultado').textContent =
+        edad >= 18 ? 'Registro correcto' : 'Edad no válida: debe ser mayor de edad';
+    });
+  </script>
+</body>
+</html>
