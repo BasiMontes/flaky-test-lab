@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>A5 · Re-render que invalida el nodo</title>
+</head>
+<body>
+  <h1>A5 · Re-render que invalida el nodo</h1>
+  <input id="nombre" placeholder="Nombre">
+  <div id="zona"><button id="guardar">Guardar</button></div>
+  <p id="resultado"></p>
+  <script>
+    // La zona del botón se vuelve a pintar en un momento aleatorio (0 a 600 ms tras
+    // cargar): el botón antiguo se descarta y aparece uno nuevo con el mismo id.
+    setTimeout(() => {
+      document.getElementById('zona').innerHTML = '<button id="guardar">Guardar</button>';
+    }, Math.floor(Math.random() * 600));
+
+    // Delegación de eventos: el botón nuevo funciona igual que el antiguo.
+    document.getElementById('zona').addEventListener('click', (e) => {
+      if (e.target.id === 'guardar') {
+        document.getElementById('resultado').textContent =
+          'Guardado: ' + document.getElementById('nombre').value;
+      }
+    });
+  </script>
+</body>
+</html>
