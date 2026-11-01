@@ -17,7 +17,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 | A1 | Espera fija en lugar de espera por condición | Reproducida | 59 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
 | A2 | Carrera en la UI tras una petición | Reproducida | 93 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
 | A3 | Timeout ajustado a la carga | Reproducida | 32 de 100 ejecuciones fallan (medido 28/10/2026, Chromium en macOS). Versión estable: 0 de 100 |
-| A4 | Elemento que se mueve durante el clic | Pendiente | — |
+| A4 | Elemento que se mueve durante el clic | Implementada, pendiente de medir. El clic normal de Playwright espera a que el elemento esté estable y no tapado, así que esta causa solo aparece al hacer clic en coordenadas leídas antes (aquí, `mouse.click` con la caja leída antes de un paso intermedio de unos 150 ms). El retraso del aviso (0 a 600 ms) y el paso intermedio son decisiones de diseño | — |
 | A5 | Re-render que invalida el locator | Pendiente | — |
 
 ### B. Estado y aislamiento

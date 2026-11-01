@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>A4 · Elemento que se mueve</title>
+  <style>
+    #aviso { height: 120px; background: #fde68a; padding: 8px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="aviso" hidden>Aviso: hemos actualizado las condiciones.</div>
+  <h1>A4 · Elemento que se mueve</h1>
+  <input id="nombre" placeholder="Nombre">
+  <button id="aceptar">Aceptar</button>
+  <p id="resultado"></p>
+  <script>
+    // Un aviso aparece por encima del contenido en un momento aleatorio (0 a 600 ms
+    // tras cargar) y empuja hacia abajo todo lo demás, incluido el botón.
+    setTimeout(() => {
+      document.getElementById('aviso').hidden = false;
+    }, Math.floor(Math.random() * 600));
+
+    document.getElementById('aceptar').addEventListener('click', () => {
+      document.getElementById('resultado').textContent =
+        'Aceptado: ' + document.getElementById('nombre').value;
+    });
+  </script>
+</body>
+</html>
