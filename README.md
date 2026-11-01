@@ -34,7 +34,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 |----|-------|--------|------------------------|
 | C1 | Dependencia de la hora o la fecha | Reproducida. Ventana de 2 s en ambas versiones; el fallo depende de que cambie el minuto en esa ventana | 3 de 100 ejecuciones fallan (medido 28/10/2026, macOS), en todos los casos el minuto siguiente. Versión estable: 0 de 100 |
 | C2 | Datos aleatorios sin semilla | Reproducida. La edad sale de `Math.random()` entre 0 y 99 y la app solo acepta mayores de edad; el error no indica qué edad salió (lo confirma la salida: «Edad no válida» sin el valor). La regla (18 o más) y el rango son decisiones de diseño. La versión estable usa un generador con semilla fija (mulberry32) y solo valores válidos: es reproducible, pero prueba siempre el mismo valor | 18 de 100 ejecuciones fallan (medido 1/11/2026, Chromium en macOS, una sola medición), todas con «Edad no válida: debe ser mayor de edad». Predicción: 18% (18 de 100 edades son menores); con 100 ejecuciones el margen es de unos 4 puntos. Versión estable: 0 de 100 |
-| C3 | Red o API externa inestable | Pendiente | — |
+| C3 | Red o API externa inestable | Implementada, pendiente de medir. No se usa ninguna red externa: la «API» es un servidor local propio que responde 503 en el 20% de las peticiones, como sustituto controlado de un servicio irregular (la tasa del 20% es decisión de diseño). La versión estable aísla la API con `page.route` | — |
 | C4 | Resolución o tamaño de ventana | Pendiente | — |
 
 ### D. Asertos débiles (aparte, no es flakiness estricta)

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>C3 · API externa</title>
+</head>
+<body>
+  <h1>C3 · Saldo de la cuenta</h1>
+  <p id="saldo">Cargando…</p>
+  <script>
+    // La dirección de la API llega por la URL (?api=...). Una sola petición al cargar,
+    // sin reintentos: si la API falla, la página muestra el error.
+    const api = new URLSearchParams(location.search).get('api');
+    fetch(api + '/saldo')
+      .then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then((datos) => {
+        document.getElementById('saldo').textContent = 'Saldo: ' + datos.saldo + ' €';
+      })
+      .catch(() => {
+        document.getElementById('saldo').textContent = 'Error al cargar el saldo';
+      });
+  </script>
+</body>
+</html>
