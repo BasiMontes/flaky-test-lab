@@ -8,8 +8,8 @@ const esperar = (ms: number) => new Promise((resolver) => setTimeout(resolver, m
 
 // Versión inestable: todas las repeticiones usan el mismo nombre de usuario.
 // Si otra prueba que corre a la vez ya lo registró, el registro falla
-// ("ya existe"). Y si la otra termina antes, su limpieza borra el usuario
-// de esta y la comprobación falla. Son dos síntomas de la misma causa.
+// ("ya existe"). Como el registro es exclusivo, solo ese síntoma es posible:
+// quien tiene el usuario lo conserva hasta que él mismo lo borra.
 test('B3 · usuario con nombre fijo (inestable)', async () => {
   const nombre = 'ana';
   registrarUsuario(nombre);
