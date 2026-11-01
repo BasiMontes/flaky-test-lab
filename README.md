@@ -25,7 +25,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 |----|-------|--------|------------------------|
 | B1 | Estado compartido entre pruebas | Reproducida. Incluye una espera de 200 ms entre el incremento y la comprobación, como decisión de diseño para abrir la ventana | 47 de 100 ejecuciones fallan (medido 28/10/2026, macOS). En todos los fallos el valor leído es el esperado + 1. Versión estable: 0 de 100 |
 | B5 | Escritura no atómica de un archivo compartido (lectura de contenido a medias) | Reproducida (1 fallo de 100 en la primera medición de B1, SyntaxError al leer JSON). Corregida con escritura atómica; en la medición posterior, 0 errores de lectura en 200 ejecuciones | 1 de 100 antes de la corrección; 0 de 200 después (una sola medición) |
-| B2 | Dependencia del orden de ejecución | Pendiente | — |
+| B2 | Dependencia del orden de ejecución | Implementada, pendiente de medir. Se mide en tres escenarios: en paralelo (`test:b2`), la consulta sola (`test:b2:aislada`) y con un solo worker (`test:b2:serie`). El paso de 300 ms de la prueba que crea el pedido es decisión de diseño | — |
 | B3 | Datos no únicos en ejecución paralela | Pendiente | — |
 | B4 | Cookies o localStorage persistentes | Pendiente | — |
 
