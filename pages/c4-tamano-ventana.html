@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C4 · Tamaño de ventana</title>
+  <style>
+    #menu-boton { display: none; }
+    .enlaces a { margin-right: 12px; }
+    /* Por debajo de 768 px el menú se colapsa: los enlaces solo se ven al abrirlo. */
+    @media (max-width: 767px) {
+      #menu-boton { display: inline-block; }
+      .enlaces { display: none; }
+      .enlaces.abierto { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <button id="menu-boton" aria-label="Menú">☰</button>
+    <div class="enlaces" id="enlaces">
+      <a href="#" id="inicio">Inicio</a>
+      <a href="#" id="contacto">Contacto</a>
+    </div>
+  </nav>
+  <p id="resultado"></p>
+  <script>
+    document.getElementById('menu-boton').addEventListener('click', () => {
+      document.getElementById('enlaces').classList.toggle('abierto');
+    });
+    document.getElementById('contacto').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('resultado').textContent = 'Contacto abierto';
+    });
+  </script>
+</body>
+</html>

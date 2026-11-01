@@ -14,6 +14,7 @@
     "test:c1": "playwright test tests/C1-dependencia-hora.spec.ts --repeat-each=100 --reporter=line",
     "test:c2": "playwright test tests/C2-datos-aleatorios.spec.ts --repeat-each=100 --reporter=line",
     "test:c3": "playwright test tests/C3-api-externa.spec.ts --repeat-each=100 --reporter=line",
+    "test:c4": "playwright test tests/C4-tamano-ventana.spec.ts --repeat-each=100 --reporter=line",
     "test:b2": "playwright test tests/B2-dependencia-orden.spec.ts --repeat-each=100 --reporter=line",
     "test:b2:aislada": "playwright test tests/B2-dependencia-orden.spec.ts -g \"otra prueba\" --repeat-each=100 --reporter=line",
     "test:b2:serie": "playwright test tests/B2-dependencia-orden.spec.ts --workers=1 --repeat-each=100 --reporter=line",
