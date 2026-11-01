@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>B4 · Estado en el navegador</title>
+</head>
+<body>
+  <h1>B4 · Estado en el navegador</h1>
+  <button id="anadir">Añadir al carrito</button>
+  <p id="estado"></p>
+  <script>
+    // El carrito se guarda en localStorage, así que sobrevive a recargar la página
+    // y a abrirla de nuevo en el mismo contexto de navegador.
+    const clave = 'carrito-b4';
+    const leer = () => Number(localStorage.getItem(clave) || '0');
+    const pintar = () => {
+      document.getElementById('estado').textContent = 'Artículos: ' + leer();
+    };
+    document.getElementById('anadir').addEventListener('click', () => {
+      localStorage.setItem(clave, String(leer() + 1));
+      pintar();
+    });
+    pintar();
+  </script>
+</body>
+</html>
