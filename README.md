@@ -9,7 +9,7 @@ Laboratorio de flaky tests. Cada causa de inestabilidad se reproduce con una pá
 
 ## Catálogo
 
-Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
+Estado: las 15 causas del catálogo (A1 a A5, B1 a B5, C1 a C4 y D1) están implementadas y medidas, cada una con una medición de 100 repeticiones en macOS. Las tasas se anotan solo con mediciones reales; las predicciones que fallaron y las explicaciones sin comprobar están marcadas como tales en cada fila.
 
 ### A. Tiempo y sincronización
 | ID | Causa | Estado | Tasa de fallo (medida) |
@@ -40,7 +40,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 ### D. Asertos débiles (aparte, no es flakiness estricta)
 | ID | Causa | Estado |
 |----|-------|--------|
-| D1 | Aserto que puede pasar sin comprobar nada | Implementada, pendiente de medir. Es distinta del resto: la página tiene un fallo a propósito (los precios salen como «undefined €»), así que una prueba que comprueba de verdad DEBE fallar, y «aprobar» es el falso aprobado. El retraso de 0 a 600 ms de los productos y el plazo de 1 s de cada comprobación son decisiones de diseño. Cada prueba anota cuántos precios encontró (`npm run test:d1:resumen`) para contar cuántas veces recorrió una lista vacía |
+| D1 | Aserto que puede pasar sin comprobar nada | Reproducida. Es distinta del resto: la página tiene un fallo a propósito (los precios salen como «undefined €»), así que una prueba que comprueba de verdad DEBE fallar, y «aprobar» es el falso aprobado. El retraso de 0 a 600 ms de los productos y el plazo de 1 s de cada comprobación son decisiones de diseño. Cada prueba anota cuántos precios encontró (`npm run test:d1:resumen`) para contar cuántas veces recorrió una lista vacía. **Medido 2/11/2026 (Chromium en macOS, una sola medición):** versión débil, 92 de 100 aprueban sin haber comprobado nada (0 precios recorridos, según el registro) y 8 de 100 llegan a ver los 3 precios y fallan, detectando el fallo. Versión sólida: 100 de 100 fallan, detectando el fallo (todas con «undefined €»). Los totales cuadran con la salida: 108 fallos (8 + 100) y 92 aprobados. No se hizo predicción de la cifra. Que solo 8 de 100 lleguen a ver los precios es coherente con que `.all()` se ejecute muy poco después de cargar la página, pero esa duración no se ha medido |
 
 ## Cómo medir
 
