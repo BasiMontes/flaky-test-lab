@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>D1 · Lista de precios</title>
+</head>
+<body>
+  <h1>D1 · Lista de precios</h1>
+  <ul id="lista"></ul>
+  <script>
+    // Los productos aparecen tras un retraso aleatorio (0 a 600 ms), como si vinieran
+    // de una petición. FALLO A PROPÓSITO: los datos traen la clave "price" pero el
+    // código lee "precio", así que todos los precios salen como "undefined €".
+    const datos = [
+      { nombre: 'Pan', price: 1 },
+      { nombre: 'Leche', price: 2 },
+      { nombre: 'Huevos', price: 3 },
+    ];
+    setTimeout(() => {
+      const lista = document.getElementById('lista');
+      for (const d of datos) {
+        const li = document.createElement('li');
+        li.innerHTML = d.nombre + ': <span class="precio">' + d.precio + ' €</span>';
+        lista.appendChild(li);
+      }
+    }, Math.floor(Math.random() * 600));
+  </script>
+</body>
+</html>

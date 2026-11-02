@@ -40,7 +40,7 @@ Estado: **A1 reproducida**. Las tasas se anotan solo con mediciones reales.
 ### D. Asertos débiles (aparte, no es flakiness estricta)
 | ID | Causa | Estado |
 |----|-------|--------|
-| D1 | Aserto que puede pasar sin comprobar nada | Pendiente |
+| D1 | Aserto que puede pasar sin comprobar nada | Implementada, pendiente de medir. Es distinta del resto: la página tiene un fallo a propósito (los precios salen como «undefined €»), así que una prueba que comprueba de verdad DEBE fallar, y «aprobar» es el falso aprobado. El retraso de 0 a 600 ms de los productos y el plazo de 1 s de cada comprobación son decisiones de diseño. Cada prueba anota cuántos precios encontró (`npm run test:d1:resumen`) para contar cuántas veces recorrió una lista vacía |
 
 ## Cómo medir
 
