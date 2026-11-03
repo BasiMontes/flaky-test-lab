@@ -38,7 +38,10 @@
     "test:toolshop:n5": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts -g N5 --repeat-each=100 --reporter=line",
     "test:toolshop:n5:cpu4": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.ingenuas.config.ts -g N5 --repeat-each=100 --reporter=line",
     "test:toolshop:lat": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line",
-    "test:toolshop:ingenuas:lat": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line"
+    "test:toolshop:ingenuas:lat": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line",
+    "test:toolshop:pedido:1": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --reporter=list",
+    "test:toolshop:pedido": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --repeat-each=100 --reporter=line",
+    "test:toolshop:ingenuas:pedido": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts -g \"N7|N8\" --repeat-each=100 --reporter=line"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",

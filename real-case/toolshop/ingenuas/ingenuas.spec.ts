@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { test, expect, Page } from '../tests/base';
+import { hastaElPago } from '../tests/flujo';
 
 // Seis pruebas escritas A PROPÓSITO con el patrón malo de una causa del catálogo,
 // contra la aplicación real. Sirven para medir si esas causas aparecen en una
@@ -86,4 +87,29 @@ test('N6c · control: espera al contador del carrito antes de ir a /checkout', a
   await expect(page.locator('[data-test="cart-quantity"]')).toHaveText('1');
   await page.goto('/checkout');
   await expect(page.locator('[data-test="cart-total"]')).toBeVisible();
+});
+
+// ---- Pedido completo: dos formas ingenuas de comprobar la confirmación ----
+// Llegan al pago igual que la prueba buena (P7); solo cambia cómo se comprueba la
+// confirmación tras pulsar `finish`. Cada ejecución crea un pedido local.
+//
+// Hipótesis (cualitativas):
+//  N7 falla casi siempre o siempre: pregunta por la confirmación en el mismo instante
+//     del clic, antes de que la petición de pago haya vuelto.
+//  N8 pasa sin presión y falla con latencia alta (como N2): 500 ms fijos bastan solo
+//     mientras la respuesta tarde menos que eso.
+
+test('N7 · comprueba la confirmación justo al pulsar finish (A2)', async ({ page }) => {
+  await hastaElPago(page);
+  await page.locator('[data-test="finish"]').click();
+  const visible = await page.locator('[data-test="payment-success-message"]').isVisible();
+  expect(visible).toBe(true);
+});
+
+test('N8 · espera fija de 500 ms tras pulsar finish (A1)', async ({ page }) => {
+  await hastaElPago(page);
+  await page.locator('[data-test="finish"]').click();
+  await page.waitForTimeout(500);
+  const visible = await page.locator('[data-test="payment-success-message"]').isVisible();
+  expect(visible).toBe(true);
 });
