@@ -42,6 +42,12 @@ Estado: las 15 causas del catálogo (A1 a A5, B1 a B5, C1 a C4 y D1) están impl
 |----|-------|--------|
 | D1 | Aserto que puede pasar sin comprobar nada | Reproducida. Es distinta del resto: la página tiene un fallo a propósito (los precios salen como «undefined €»), así que una prueba que comprueba de verdad DEBE fallar, y «aprobar» es el falso aprobado. El retraso de 0 a 600 ms de los productos y el plazo de 1 s de cada comprobación son decisiones de diseño. Cada prueba anota cuántos precios encontró (`npm run test:d1:resumen`) para contar cuántas veces recorrió una lista vacía. **Medido 2/11/2026 (Chromium en macOS, una sola medición):** versión débil, 92 de 100 aprueban sin haber comprobado nada (0 precios recorridos, según el registro) y 8 de 100 llegan a ver los 3 precios y fallan, detectando el fallo. Versión sólida: 100 de 100 fallan, detectando el fallo (todas con «undefined €»). Los totales cuadran con la salida: 108 fallos (8 + 100) y 92 aprobados. No se hizo predicción de la cifra. Que solo 8 de 100 lleguen a ver los precios es coherente con que `.all()` se ejecute muy poco después de cargar la página, pero esa duración no se ha medido |
 
+## Caso real: Toolshop
+
+Además del catálogo, el repo mide flakiness contra una aplicación real: [Practice Software Testing (Toolshop)](https://github.com/testsmith-io/practice-software-testing), levantada en local con Docker (no se incluye su código; su licencia es de solo referencia). En `real-case/toolshop/` hay seis pruebas bien escritas y versiones «ingenuas» de las mismas, que usan a propósito patrones del catálogo (esperas fijas, `count()` inmediato, `.all()` sin esperar). Se miden con `--repeat-each=100` en condiciones normales y bajo presión (CPU 4 veces más lenta, API 300 ms más lenta).
+
+Resultado: las pruebas bien escritas no fallan en 2.700 ejecuciones. Las ingenuas fallan o aprueban sin comprobar según la presión (cifras en `real-case/toolshop/`). Es una sola medición de cada una; no demuestra que las pruebas buenas sean robustas en general.
+
 ## Cómo medir
 
 ```bash
