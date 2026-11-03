@@ -41,7 +41,7 @@ Los errores se agrupan por las primeras líneas de su mensaje (sin códigos de c
 - **Formato:** se comprobó con una ejecución real de Playwright (`fixtures/ejemplo-real.json`). Con `--repeat-each`, cada repetición es una entrada separada de la misma prueba.
 - **Analizador:** 7 pruebas con `npm run test:detector`. Las que dependen del formato usan ese informe real; las de la lógica de clasificación usan informes **inventados**, y los valores de referencia de Wilson (0/100 → 3,7 %; 50/100 → 40,4–59,6 %) son los conocidos.
 - **De principio a fin:** ejecutado con Playwright real sobre pruebas de juguete sin navegador, donde la verdad se conoce por construcción (fallo cuando `repeatEachIndex % 4 === 0`): con 20 repeticiones, 5 fallos exactos. Códigos de salida comprobados en los cuatro casos.
-- **Sin comprobar todavía:** el detector no se ha ejecutado contra las suites del repo con navegador (Toolshop o el catálogo). La validación pendiente es reproducir resultados ya medidos a mano, por ejemplo las pruebas ingenuas N1 y N6c de `real-case/toolshop/`.
+- **Contra una suite con navegador:** ejecutado dos veces sobre las pruebas ingenuas N1 y N6c de `real-case/toolshop/` (100 repeticiones, 3/11/2026). N1 salió flaky con 81 y 75 fallos de 100, y N6c estable con 0 de 100 las dos veces; el código de salida fue 1. La diferencia entre las dos ejecuciones de N1 es compatible con el azar. Sin comprobar todavía: el uso con `--cpu` y `--latencia`, y el ejemplo de GitHub Actions.
 
 ## Limitaciones
 
