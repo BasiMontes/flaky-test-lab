@@ -25,7 +25,7 @@ async function volcar(page, titulo) {
   console.log(`\n=== ${titulo} (${page.url()}) ===`);
   console.log(Object.entries(datos).map(([k, n]) => (n > 1 ? `${k} x${n}` : k)).join('\n'));
   const selects = await page.evaluate(() =>
-    [...document.querySelectorAll('select[data-test]')].map((s) => ({
+    [...document.querySelectorAll('select[data-test="payment-method"]')].map((s) => ({
       test: s.getAttribute('data-test'),
       opciones: [...s.options].map((o) => `${o.value}=${o.textContent.trim()}`),
     })),
@@ -39,7 +39,12 @@ async function pulsar(page, test) {
     console.log(`\n(No existe data-test="${test}"; se detiene aquí.)`);
     return false;
   }
-  await el.first().click();
+  try {
+    await el.first().click({ timeout: 5000 });
+  } catch (e) {
+    console.log(`\n-> NO se pudo pulsar ${test} en 5 s (¿deshabilitado?). Motivo: ${String(e.message).split('\n')[0]}`);
+    return false;
+  }
   console.log(`\n-> pulsado ${test}`);
   return true;
 }
@@ -66,12 +71,26 @@ async function pulsar(page, test) {
   if (!(await pulsar(page, 'proceed-1'))) return b.close();
   await volcar(page, 'TRAS proceed-1');
 
-  for (const paso of ['proceed-2', 'proceed-3']) {
-    const el = page.locator(`[data-test="${paso}"]`);
-    if (await el.count()) {
-      await pulsar(page, paso);
-      await volcar(page, `TRAS ${paso}`);
-    }
+  if (await pulsar(page, 'proceed-2')) {
+    await volcar(page, 'TRAS proceed-2 (dirección)');
+    const campos = ['postal_code', 'house_number', 'street', 'city', 'state'];
+    const antes = {};
+    for (const c of campos) antes[c] = await page.locator(`[data-test="${c}"]`).inputValue();
+    console.log('\nValores de la dirección antes de rellenar:', JSON.stringify(antes));
+    await page.locator('[data-test="country"]').selectOption('ES');
+    await page.locator('[data-test="postal_code"]').fill('41001');
+    await page.locator('[data-test="house_number"]').fill('1');
+    await page.locator('[data-test="street"]').fill('Calle de Prueba');
+    await page.locator('[data-test="city"]').fill('Sevilla');
+    await page.locator('[data-test="state"]').fill('Sevilla');
+    await page.waitForTimeout(1000);
+    console.log('proceed-3 habilitado tras rellenar:', await page.locator('[data-test="proceed-3"]').isEnabled());
+    const avisos = await page.evaluate(() =>
+      [...document.querySelectorAll('.alert-danger, .invalid-feedback, .text-danger, [class*="error"]')]
+        .map((e) => e.textContent.trim()).filter(Boolean),
+    );
+    if (avisos.length) console.log('Avisos de validación visibles:', JSON.stringify(avisos));
+    if (await pulsar(page, 'proceed-3')) await volcar(page, 'TRAS proceed-3 (pago)');
   }
 
   const pago = page.locator('select[data-test="payment-method"]');
