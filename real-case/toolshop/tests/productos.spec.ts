@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './base';
 
 // Primera tanda, escrita como la escribiría un QA sin pensar en flakiness:
 // aserciones con espera (web-first), sin esperas fijas y sin predicciones.

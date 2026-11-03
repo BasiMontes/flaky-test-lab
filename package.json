@@ -26,7 +26,10 @@
     "test:b4:aislada": "playwright test tests/B4-estado-navegador.spec.ts -g \"inestable\" --repeat-each=100 --reporter=line",
     "test:b4:serie": "playwright test tests/B4-estado-navegador.spec.ts --workers=1 --repeat-each=100 --reporter=line",
     "test:toolshop": "playwright test -c real-case/toolshop/playwright.config.ts --reporter=list",
-    "test:toolshop:100": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line"
+    "test:toolshop:100": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line",
+    "test:toolshop:w8": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line --workers=8",
+    "test:toolshop:cpu4": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line",
+    "test:toolshop:cpu4:1": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.config.ts --reporter=list"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",

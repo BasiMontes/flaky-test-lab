@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from './base';
 
 // Segunda tanda: pruebas con estado (sesión y carrito). Misma regla que la primera:
 // escritas como las escribiría un QA sin pensar en flakiness, sin esperas fijas y
