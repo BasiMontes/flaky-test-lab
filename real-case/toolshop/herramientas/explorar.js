@@ -7,6 +7,9 @@ const BASE = 'http://localhost:4200';
 
 async function volcar(page, titulo) {
   await page.waitForLoadState('networkidle');
+  // Pausa fija a propósito (es exploración, no una prueba): en el detalle de producto
+  // el contenido aún no estaba pintado cuando la red se quedó quieta.
+  await page.waitForTimeout(2000);
   const datos = await page.evaluate(() => {
     const m = {};
     document.querySelectorAll('[data-test]').forEach((e) => {
