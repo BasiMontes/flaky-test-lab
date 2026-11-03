@@ -5,6 +5,7 @@ import { defineConfig } from '@playwright/test';
 // bien escritas (tests/), que deben seguir siendo la referencia estable.
 export default defineConfig({
   testDir: './ingenuas',
+  globalSetup: './herramientas/limpiar-estado.ts',
   fullyParallel: true,
   retries: 0,
   reporter: 'list',
