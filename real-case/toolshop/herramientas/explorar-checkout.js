@@ -101,8 +101,9 @@ async function pulsar(page, test) {
       await pago.selectOption(valor);
       await volcar(page, `MÉTODO DE PAGO: ${valor}`);
     }
-    await pago.selectOption(valores[0]);
+    await pago.selectOption('cash-on-delivery');
     await page.waitForTimeout(500);
+    console.log('\nMétodo elegido para terminar: cash-on-delivery');
   }
 
   const fin = page.locator('[data-test="finish"]');
@@ -112,7 +113,12 @@ async function pulsar(page, test) {
       await pulsar(page, 'finish');
       await volcar(page, 'TRAS finish');
       const texto = await page.locator('body').innerText();
-      console.log('\nTexto de la pantalla (primeros 500 caracteres):\n' + texto.slice(0, 500));
+      console.log('\nTexto de la pantalla (últimos 900 caracteres):\n' + texto.slice(-900));
+      const avisos = await page.evaluate(() =>
+        [...document.querySelectorAll('.alert, [data-test*="message"], [data-test*="success"], [data-test*="order"]')]
+          .map((e) => `${e.getAttribute('data-test') ?? e.className}: ${e.textContent.trim().slice(0, 200)}`),
+      );
+      console.log('\nAvisos y mensajes de la pantalla:', JSON.stringify(avisos, null, 1));
     }
   }
 
