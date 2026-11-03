@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "proyecto": "flaky-test-lab",
+    "entorno": "MacBook Air, macOS, Chromium, Playwright 1.64.1; Toolshop en local con OrbStack/Docker en el mismo equipo",
+    "aviso": "Todas las cifras son UNA sola medicion por celda, salvo donde se indica. Son tasas orientativas, no constantes. 0 fallos no es 0 %.",
+    "repeticiones_por_prueba": 100,
+    "condiciones": {
+      "normal": "4 workers, sin presion anadida",
+      "w8": "8 workers",
+      "cpu4": "CPU del navegador 4 veces mas lenta (CPU_THROTTLE=4, medido 3,9)",
+      "lat300": "API +300 ms por peticion (LATENCIA_MS=300)",
+      "lat1000": "API +1000 ms por peticion (LATENCIA_MS=1000)"
+    },
+    "fuente": "Cifras copiadas de las salidas pegadas en la conversacion y de los documentos del proyecto (3/11/2026). Las salidas completas estan en el Mac (salida-*.txt); no estan en el repo."
+  },
+
+  "buenas": {
+    "descripcion": "P1 a P6 (seis pruebas bien escritas) x 100 repeticiones = 600 ejecuciones por condicion.",
+    "ejecuciones": [
+      { "condicion": "normal", "pruebas": "P1-P3", "n": 300, "fallos": 0, "minutos": 1.1, "comando": "npm run test:toolshop:100 (cuando solo existian P1-P3)", "nota": "Primera pasada, antes de anadir P4-P6" },
+      { "condicion": "normal", "pruebas": "P1-P6", "n": 600, "fallos": 0, "minutos": 6.4, "comando": "npm run test:toolshop:100" },
+      { "condicion": "w8", "pruebas": "P1-P6", "n": 600, "fallos": 0, "minutos": 4.8, "comando": "npm run test:toolshop:w8" },
+      { "condicion": "cpu4", "pruebas": "P1-P6", "n": 600, "fallos": 0, "minutos": 6.2, "comando": "npm run test:toolshop:cpu4" },
+      { "condicion": "lat300", "pruebas": "P1-P6", "n": 600, "fallos": 0, "minutos": 8.2, "comando": "LATENCIA_MS=300 npm run test:toolshop:lat" },
+      { "condicion": "lat1000", "pruebas": "P1-P6", "n": 600, "fallos": 0, "minutos": 10.2, "comando": "LATENCIA_MS=1000 npm run test:toolshop:lat" }
+    ],
+    "total_n": 3300,
+    "total_fallos": 0,
+    "nota": "Solo se dispone del total por ejecucion (600), no del desglose por prueba."
+  },
+
+  "pedido_p7": {
+    "descripcion": "P7: pedido completo (login, producto, carrito, direccion, pago contra reembolso, mensaje de exito). Sin presion anadida.",
+    "ejecuciones": [
+      { "n": 1, "fallos": 0, "comando": "npm run test:toolshop:pedido:1" },
+      { "n": 100, "fallos": 1, "comando": "npm run test:toolshop:pedido", "nota": "Fallo en la repeticion 22: proceed-3 siguio deshabilitado 5 s tras rellenar la direccion. Causa SIN diagnosticar (prueba, aplicacion o entorno)." },
+      { "n": 300, "fallos": 0, "minutos": 6.4, "comando": "npm run test:toolshop:pedido:300" }
+    ],
+    "total_repeticiones": { "n": 400, "fallos": 1, "nota": "Sin contar la ejecucion unica inicial" }
+  },
+
+  "ingenuas": {
+    "descripcion": "Pruebas escritas a proposito con un patron malo. Fallos de 100 repeticiones por condicion. null = no medido.",
+    "condiciones_medidas": ["normal", "cpu4", "lat300", "lat1000"],
+    "pruebas": [
+      { "id": "N1", "patron": "count() justo despues de cargar", "fallos": { "normal": 81, "cpu4": 100, "lat300": 100, "lat1000": 100 } },
+      { "id": "N2", "patron": "espera fija de 500 ms tras buscar", "fallos": { "normal": 0, "cpu4": 0, "lat300": 0, "lat1000": 100 } },
+      { "id": "N3", "patron": "networkidle y isVisible en el detalle", "fallos": { "normal": 0, "cpu4": 0, "lat300": 32, "lat1000": 0 }, "nota": "No monotona; sin explicacion medida" },
+      { "id": "N4", "patron": "toHaveCount(9) con timeout de 500 ms", "fallos": { "normal": 0, "cpu4": 2, "lat300": 14, "lat1000": 100 } },
+      { "id": "N5", "patron": ".all() de los precios sin esperar", "fallos": { "normal": 0, "cpu4": 0, "lat300": 0, "lat1000": 0 }, "aprobo_sin_comprobar": { "normal": 70, "cpu4": 99, "lat300": 100, "lat1000": 100 }, "nota": "Nunca falla. 'aprobo_sin_comprobar' = ejecuciones que vieron 0 precios. normal y cpu4 son de N5 sola (npm run test:toolshop:n5 / :n5:cpu4); lat300 y lat1000 salen de la ejecucion completa de las ingenuas." },
+      { "id": "N6", "patron": "goto('/checkout') sin esperar al carrito", "fallos": { "normal": 100, "cpu4": 100, "lat300": 100, "lat1000": 100 } },
+      { "id": "N6c", "patron": "control de N6: espera al contador del carrito", "fallos": { "normal": 0, "cpu4": 0, "lat300": 0, "lat1000": 0 }, "nota": "normal viene de una ejecucion aparte (npm run test:toolshop:n6c)" },
+      { "id": "N7", "patron": "isVisible del mensaje de exito justo tras finish", "fallos": { "normal": 100, "cpu4": null, "lat300": null, "lat1000": null } },
+      { "id": "N8", "patron": "waitForTimeout(500) y despues isVisible", "fallos": { "normal": 0, "cpu4": null, "lat300": null, "lat1000": null }, "nota": "Aprobo 100 de 100 sin presion; con latencia sin medir" }
+    ],
+    "comandos": {
+      "normal": "npm run test:toolshop:ingenuas",
+      "cpu4": "npm run test:toolshop:ingenuas:cpu4",
+      "lat300": "LATENCIA_MS=300 npm run test:toolshop:ingenuas:lat",
+      "lat1000": "LATENCIA_MS=1000 npm run test:toolshop:ingenuas:lat",
+      "N7_N8": "npm run test:toolshop:ingenuas:pedido"
+    }
+  },
+
+  "detector": {
+    "descripcion": "Detector de flakiness ejecutado contra N1 y N6c (100 repeticiones cada una, sin presion).",
+    "comando": "npm run detectar -- --config real-case/toolshop/playwright.ingenuas.config.ts --repeat 100 --grep \"N1|N6c\"",
+    "ejecuciones": [
+      { "n_ejecucion": 1, "N1": { "clase": "flaky", "fallos": 81, "n": 100 }, "N6c": { "clase": "estable", "fallos": 0, "n": 100 }, "minutos": 2.1 },
+      { "n_ejecucion": 2, "N1": { "clase": "flaky", "fallos": 75, "n": 100 }, "N6c": { "clase": "estable", "fallos": 0, "n": 100 }, "codigo_salida": 1 }
+    ],
+    "nota": "Los intervalos de Wilson de las dos ejecuciones de N1 se solapan: la diferencia es compatible con el azar."
+  },
+
+  "catalogo": {
+    "descripcion": "15 causas de inestabilidad en paginas propias. Fallos de 100 en la version inestable; la version estable dio 0 de 100 salvo D1 (se lee al reves).",
+    "causas": [
+      { "id": "A1", "causa": "Espera fija", "fallos": 59, "prediccion": "~67 %" },
+      { "id": "A2", "causa": "Carrera tras una peticion", "fallos": 93 },
+      { "id": "A3", "causa": "Timeout ajustado a la carga", "fallos": 32, "prediccion": "~25 %" },
+      { "id": "A4", "causa": "Elemento que se mueve durante el clic", "fallos": 26, "prediccion": "~25 %" },
+      { "id": "A5", "causa": "Re-render que invalida el nodo guardado", "fallos": 44, "prediccion": "~25 %", "nota": "Prediccion fallida; explicacion probable no medida" },
+      { "id": "B1", "causa": "Estado compartido", "fallos": 47 },
+      { "id": "B2", "causa": "Dependencia del orden", "fallos": 98, "nota": "Con 4 workers. Una ejecucion previa dio 43; sin explicar" },
+      { "id": "B3", "causa": "Datos no unicos en paralelo", "fallos": 34, "nota": "Con 4 workers" },
+      { "id": "B4", "causa": "localStorage persistente", "fallos": 100, "nota": "Con 1 worker; con 4 workers 0 (peculiaridad de --repeat-each)" },
+      { "id": "B5", "causa": "Escritura no atomica (hallazgo de B1)", "fallos": 1, "nota": "Antes de corregir 1 de 100; despues 0 de 200" },
+      { "id": "C1", "causa": "Dependencia de la hora", "fallos": 3, "prediccion": "~3 %" },
+      { "id": "C2", "causa": "Datos aleatorios sin semilla", "fallos": 18, "prediccion": "18 %" },
+      { "id": "C3", "causa": "API inestable (servidor local, 20 % de 503)", "fallos": 26, "prediccion": "~20 %" },
+      { "id": "C4", "causa": "Tamano de ventana", "fallos": 40, "prediccion": "40", "nota": "Exacto por construccion" },
+      { "id": "D1", "causa": "Aserto que aprueba sin comprobar nada", "fallos": 8, "nota": "Se lee al reves: la debil aprobo 92 de 100 sin comprobar nada y detecto el fallo 8; la solida lo detecto 100 de 100" }
+    ]
+  }
+}
