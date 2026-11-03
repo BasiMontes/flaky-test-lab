@@ -29,7 +29,11 @@
     "test:toolshop:100": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line",
     "test:toolshop:w8": "playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line --workers=8",
     "test:toolshop:cpu4": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.config.ts --repeat-each=100 --reporter=line",
-    "test:toolshop:cpu4:1": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.config.ts --reporter=list"
+    "test:toolshop:cpu4:1": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.config.ts --reporter=list",
+    "test:toolshop:ingenuas:1": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --reporter=list",
+    "test:toolshop:ingenuas": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line",
+    "test:toolshop:ingenuas:cpu4": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line",
+    "test:toolshop:n5:resumen": "node -e \"const fs=require(\\\"fs\\\");const c={};for(const f of fs.readdirSync(\\\"real-case/toolshop/estado/n5\\\")){const n=fs.readFileSync(\\\"real-case/toolshop/estado/n5/\\\"+f,\\\"utf8\\\").trim();c[n]=(c[n]||0)+1}console.log(JSON.stringify(c))\""
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
