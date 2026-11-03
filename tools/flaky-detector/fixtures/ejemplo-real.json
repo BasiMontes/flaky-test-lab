@@ -1,0 +1,1636 @@
+{
+  "config": {
+    "argv": [
+      "/opt/node22/bin/node",
+      "/home/claude/flaky-test-lab/node_modules/.bin/playwright",
+      "test",
+      "-c",
+      "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/playwright.config.js",
+      "--repeat-each=8",
+      "--reporter=json"
+    ],
+    "configFile": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/playwright.config.js",
+    "rootDir": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/claude/flaky-test-lab/test-results",
+        "repeatEach": 8,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/home/claude/flaky-test-lab/test-results",
+        "repeatEach": 8,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato",
+        "snapshotDir": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {},
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "demo.spec.js",
+      "file": "demo.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flaky de juguete",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:2:85",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 85,
+                      "line": 2
+                    },
+                    "snippet": "  1 | const { test, expect } = require('/home/claude/flaky-test-lab/node_modules/@playwright/test');\n> 2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n    |                                                                                     ^\n  3 | test('siempre pasa', async () => {});\n  4 | test('siempre falla', async () => { expect(1).toBe(2); });\n  5 | test.skip('saltada', async () => {});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 85,
+                        "line": 2
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m\n\n  1 | const { test, expect } = require('/home/claude/flaky-test-lab/node_modules/@playwright/test');\n> 2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n    |                                                                                     ^\n  3 | test('siempre pasa', async () => {});\n  4 | test('siempre falla', async () => { expect(1).toBe(2); });\n  5 | test.skip('saltada', async () => {});\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:2:85"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:38.201Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-flaky-de-juguete/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 85,
+                    "line": 2
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-ce0e5af4f59b3d898acb",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:38.694Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-50a3e965cc0bf7e2c825",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:38.728Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-f295148e8b62093e7b04",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:38.754Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-a6f0194b0daf95abe40a",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.160Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-439006e27e5afb53d4b4",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.198Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-716d50ef00e79353df35",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.223Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat1/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-df65aa34114fccd86a9a",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.266Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-94fd66f589d12981a1d9",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.723Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-ccfea6e3cf11914704d8",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.786Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-1552f666d48d4159535b",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.810Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat2/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-554c7727c1fc56961280",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:39.851Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-5ecbaba8874cfea3a4bf",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:40.274Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-2a90efde181c4a8ae515",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:40.341Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-c6463fd8dcd3724d90a2",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:40.375Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat3/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-1f5198b8babf45d4fcb1",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:40.413Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-5bdd77575fb6e2ced222",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:2:85",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 85,
+                      "line": 2
+                    },
+                    "snippet": "  1 | const { test, expect } = require('/home/claude/flaky-test-lab/node_modules/@playwright/test');\n> 2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n    |                                                                                     ^\n  3 | test('siempre pasa', async () => {});\n  4 | test('siempre falla', async () => { expect(1).toBe(2); });\n  5 | test.skip('saltada', async () => {});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 85,
+                        "line": 2
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m0\u001b[39m\n\n  1 | const { test, expect } = require('/home/claude/flaky-test-lab/node_modules/@playwright/test');\n> 2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n    |                                                                                     ^\n  3 | test('siempre pasa', async () => {});\n  4 | test('siempre falla', async () => { expect(1).toBe(2); });\n  5 | test.skip('saltada', async () => {});\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:2:85"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:40.882Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-flaky-de-juguete-repeat4/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 85,
+                    "line": 2
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-01b5d6d3fb450421442f",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:41.402Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-841e6454b85bde4ca1e1",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:41.444Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat4/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-95bd18c72d2451749156",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:41.477Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-ee4c38b36960d3e4f74e",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:41.947Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-b10f1591291347021f9b",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.004Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-2a6875369ae16afb91ac",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.022Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat5/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-e70410b3ec7a02de06dc",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.064Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-334b4cf0e5c95ec4452d",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.553Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-bcf6d0b83557615da516",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.603Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-06478e0332e0384e4fb4",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 17,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.623Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat6/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-51284598049ac5767411",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:42.658Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-9d20486494e8a247f38f",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        },
+        {
+          "title": "flaky de juguete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:43.041Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-d155673968ce753dc346",
+          "file": "demo.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "siempre pasa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:43.083Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-67976c0b13b92c97ddef",
+          "file": "demo.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "siempre falla",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47",
+                    "location": {
+                      "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                      "column": 47,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "column": 47,
+                        "line": 4
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  2 | test('flaky de juguete', async ({}, info) => { expect(info.repeatEachIndex % 4).not.toBe(0); });\n  3 | test('siempre pasa', async () => {});\n> 4 | test('siempre falla', async () => { expect(1).toBe(2); });\n    |                                               ^\n  5 | test.skip('saltada', async () => {});\n  6 |\n    at /tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js:4:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:43.099Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/claude/flaky-test-lab/test-results/demo-siempre-falla-repeat7/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "column": 47,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-5ce0dee55249278d497f",
+          "file": "demo.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "saltada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-03T16:22:43.149Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/tmp/claude-0/-home-claude/3d2a0efb-fda8-586d-bfbc-3586d9b4b842/scratchpad/formato/demo.spec.js",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e55eebcb6d281b4de51c-b0984ba3b00741607be3",
+          "file": "demo.spec.js",
+          "line": 5,
+          "column": 6
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-03T16:22:37.727Z",
+    "duration": 5435.786,
+    "expected": 14,
+    "skipped": 8,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}

@@ -42,7 +42,9 @@
     "test:toolshop:pedido:1": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --reporter=list",
     "test:toolshop:pedido": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --repeat-each=100 --reporter=line",
     "test:toolshop:ingenuas:pedido": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts -g \"N7|N8\" --repeat-each=100 --reporter=line",
-    "test:toolshop:pedido:300": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --repeat-each=300 --reporter=line"
+    "test:toolshop:pedido:300": "playwright test -c real-case/toolshop/playwright.config.ts -g P7 --repeat-each=300 --reporter=line",
+    "detectar": "node tools/flaky-detector/detectar.js",
+    "test:detector": "node --test tools/flaky-detector/analizar.test.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
