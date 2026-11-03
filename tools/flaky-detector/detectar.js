@@ -62,7 +62,7 @@ function salir(codigo, mensaje) {
     jsonPath = path.join(salida, 'playwright.json');
     const repeat = Number(a.repeat);
     if (!Number.isInteger(repeat) || repeat < 1) return salir(2, '--repeat debe ser un entero positivo');
-    const args = ['playwright', 'test', '-c', a.config, '--repeat-each', String(repeat), '--reporter=line,json'];
+    const args = ['playwright', 'test', '-c', a.config, '--repeat-each', String(repeat), `--reporter=${path.join(__dirname, 'progreso.js')},json`];
     if (a.grep) args.push('-g', a.grep);
     if (a.workers) args.push('--workers', a.workers);
     const env = { ...process.env, PLAYWRIGHT_JSON_OUTPUT_NAME: jsonPath };
