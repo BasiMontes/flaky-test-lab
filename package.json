@@ -33,7 +33,8 @@
     "test:toolshop:ingenuas:1": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --reporter=list",
     "test:toolshop:ingenuas": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line",
     "test:toolshop:ingenuas:cpu4": "CPU_THROTTLE=4 playwright test -c real-case/toolshop/playwright.ingenuas.config.ts --repeat-each=100 --reporter=line",
-    "test:toolshop:n5:resumen": "node -e \"const fs=require(\\\"fs\\\");const c={};for(const f of fs.readdirSync(\\\"real-case/toolshop/estado/n5\\\")){const n=fs.readFileSync(\\\"real-case/toolshop/estado/n5/\\\"+f,\\\"utf8\\\").trim();c[n]=(c[n]||0)+1}console.log(JSON.stringify(c))\""
+    "test:toolshop:n5:resumen": "node -e \"const fs=require(\\\"fs\\\");const c={};for(const f of fs.readdirSync(\\\"real-case/toolshop/estado/n5\\\")){const n=fs.readFileSync(\\\"real-case/toolshop/estado/n5/\\\"+f,\\\"utf8\\\").trim();c[n]=(c[n]||0)+1}console.log(JSON.stringify(c))\"",
+    "test:toolshop:n6c": "playwright test -c real-case/toolshop/playwright.ingenuas.config.ts -g N6c --repeat-each=100 --reporter=line"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",

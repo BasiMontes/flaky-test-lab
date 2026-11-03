@@ -72,3 +72,18 @@ test('N6 · va al carrito sin esperar a que se cree (A2)', async ({ page }) => {
   await page.goto('/checkout');
   await expect(page.locator('[data-test="cart-total"]')).toBeVisible();
 });
+
+// Control de N6 (no es una versión ingenua): idéntica, pero espera a que el contador
+// del carrito suba a 1 antes de navegar. Si N6 falla por navegar sin esperar, esta
+// debería pasar siempre; si también falla, la causa es otra (p. ej. que recargar la
+// página con goto pierda el carrito aunque se espere).
+test('N6c · control: espera al contador del carrito antes de ir a /checkout', async ({ page }) => {
+  await page.goto('/');
+  await expect(tarjetas(page)).toHaveCount(9);
+  await tarjetas(page).first().click();
+  await expect(nombres(page)).toBeVisible();
+  await page.locator('[data-test="add-to-cart"]').click();
+  await expect(page.locator('[data-test="cart-quantity"]')).toHaveText('1');
+  await page.goto('/checkout');
+  await expect(page.locator('[data-test="cart-total"]')).toBeVisible();
+});
