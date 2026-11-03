@@ -38,8 +38,28 @@ export async function hastaElPago(page: Page) {
   await page.locator('[data-test="street"]').fill('Calle de Prueba');
   await page.locator('[data-test="city"]').fill('Sevilla');
   await page.locator('[data-test="state"]').fill('Sevilla');
-  await expect(page.locator('[data-test="proceed-3"]')).toBeEnabled();
-  await page.locator('[data-test="proceed-3"]').click();
+  const siguiente = page.locator('[data-test="proceed-3"]');
+  try {
+    await expect(siguiente).toBeEnabled();
+  } catch (error) {
+    // Diagnóstico (no cambia lo que se comprueba): si el botón sigue deshabilitado,
+    // se añade al mensaje de error el valor de cada campo y los avisos de validación,
+    // para poder decidir si el fallo es de la prueba o de la aplicación.
+    const estado = await page.evaluate(() => {
+      const campos = ['country', 'postal_code', 'house_number', 'street', 'city', 'state'];
+      const valores: Record<string, unknown> = {};
+      for (const c of campos) {
+        const el = document.querySelector(`[data-test="${c}"]`) as HTMLInputElement | null;
+        valores[c] = el ? { valor: el.value, clases: el.className } : null;
+      }
+      const avisos = [...document.querySelectorAll('.invalid-feedback, .alert-danger, .text-danger')]
+        .map((e) => (e.textContent ?? '').trim())
+        .filter(Boolean);
+      return { valores, avisos };
+    });
+    throw new Error(`proceed-3 sigue deshabilitado. Estado del formulario: ${JSON.stringify(estado)}\n${String(error)}`);
+  }
+  await siguiente.click();
 
   await expect(page.locator('[data-test="payment-method"]')).toBeVisible();
   await page.locator('[data-test="payment-method"]').selectOption('cash-on-delivery');
