@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flaky Test Lab</title>
+<meta name="description" content="Resultados medidos de flakiness en pruebas de Playwright: catálogo de causas, caso real con Toolshop y detector.">
+<style>
+  :root { --bg:#fbfaf8; --fg:#1f2328; --muted:#5d6670; --panel:#ffffff; --line:#dcd8d0; --crit:#c8412b; --ok:#2c7a4b; --warn:#b7791f; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16181b; --fg:#e8e6e1; --muted:#9aa1a9; --panel:#1e2125; --line:#33383e; --crit:#e5654d; --ok:#5fbf86; --warn:#e0a84a; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:64rem; margin:0 auto; padding:2rem max(16px,env(safe-area-inset-right,0px)) 3rem max(16px,env(safe-area-inset-left,0px)); display:flex; flex-direction:column; gap:1.5rem; }
+  h1 { font:400 clamp(2rem,5vw,2.75rem)/1.1 Georgia,"Times New Roman",serif; margin:0; text-wrap:balance; }
+  h2 { font-size:1.1rem; font-weight:600; margin:0; }
+  p { margin:0; }
+  .lead { max-width:65ch; }
+  .muted { color:var(--muted); font-size:.875rem; }
+  .aviso { max-width:65ch; color:var(--muted); font-size:.9rem; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr)); gap:1rem; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.1rem; display:flex; flex-direction:column; gap:.7rem; min-width:0; }
+  .tile b { font:400 2.25rem/1.1 Georgia,"Times New Roman",serif; font-variant-numeric:tabular-nums; }
+  .scroll { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; font-size:.95rem; }
+  th { text-align:left; font-weight:600; color:var(--muted); font-size:.8rem; padding:.3rem .6rem; border-bottom:1px solid var(--line); white-space:nowrap; }
+  td { padding:.3rem .6rem; border-bottom:1px solid var(--line); vertical-align:top; }
+  .num { text-align:right; } th.num { text-align:right; }
+  td.cel { text-align:center; min-width:5.5rem; }
+  td.sin { color:var(--muted); font-size:.8rem; }
+  td.fallos { white-space:nowrap; }
+  .barra { display:inline-block; height:.5rem; border-radius:2px; background:var(--crit); vertical-align:middle; margin-left:.5rem; }
+  .flaky { color:var(--crit); font-weight:600; } .estable { color:var(--ok); font-weight:600; }
+  footer { border-top:1px solid var(--line); padding-top:1rem; }
+  a { color:inherit; }
+  code { font-size:.9em; }
+</style>
+</head>
+<body>
+<main>
+  <header style="display:flex;flex-direction:column;gap:.8rem">
+    <h1>Flaky Test Lab</h1>
+    <p class="lead">Las pruebas bien escritas no fallaron en ninguna de las condiciones medidas. Las mismas comprobaciones con un patrón malo fallan, o aprueban sin comprobar nada, según la presión sobre el entorno.</p>
+    <p class="aviso">Cada celda es una sola medición, hecha en un MacBook Air con la aplicación en el mismo equipo. Las tasas son orientativas. Con cero fallos solo se sabe que la tasa real es baja, no cuánto.</p>
+  </header>
+
+  <section class="tiles">
+    <div class="card tile"><span class="muted">Ejecuciones de pruebas bien escritas (P1 a P6)</span><b id="t-n">—</b></div>
+    <div class="card tile"><span class="muted">Fallos en esas ejecuciones</span><b id="t-f">—</b></div>
+    <div class="card tile"><span class="muted">Fallos del pedido completo (P7), sin explicar</span><b id="t-p7">—</b></div>
+  </section>
+
+  <section class="card">
+    <h2>Pruebas bien escritas bajo presión</h2>
+    <p class="muted">Pruebas contra Toolshop en local, con espera automática y sin esperas fijas. Fallos y límite superior del intervalo de Wilson al 95 % para la tasa real.</p>
+    <div class="scroll"><table><thead><tr><th>Condición</th><th class="num">Ejecuciones</th><th class="num">Fallos</th><th class="num">Tasa real, como mucho</th><th class="num">Minutos</th></tr></thead><tbody id="tb-buenas"></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Pedido completo (P7)</h2>
+    <p class="muted">Login, producto, carrito, dirección, pago contra reembolso y mensaje de éxito. El fallo de las repeticiones: el botón de continuar siguió deshabilitado tras rellenar la dirección. Causa sin diagnosticar: no se sabe si fue la prueba, la aplicación o el entorno.</p>
+    <div class="scroll"><table><thead><tr><th>Tanda</th><th class="num">Ejecuciones</th><th class="num">Fallos</th></tr></thead><tbody id="tb-p7"></tbody></table></div>
+    <p class="muted" id="p7-resumen"></p>
+  </section>
+
+  <section class="card">
+    <h2>El mismo flujo, mal escrito</h2>
+    <p class="muted" id="ing-intro"></p>
+    <div class="scroll"><table><thead><tr><th>Prueba</th><th>Patrón</th><th class="num">Normal</th><th class="num">CPU 4× más lenta</th><th class="num">API +300 ms</th><th class="num">API +1000 ms</th></tr></thead><tbody id="tb-ing"></tbody></table></div>
+    <p class="muted">N5 nunca falla, pero casi nunca comprueba nada: ejecuciones que vieron la lista vacía y aprobaron igualmente.</p>
+    <div class="scroll"><table><thead><tr><th>Condición</th><th class="num">Aprobó sin comprobar</th></tr></thead><tbody id="tb-n5"></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Detector de flakiness</h2>
+    <p class="muted">Ejecuciones repetidas del mismo comando sobre N1 y N6c. N1 sale flaky las dos veces; N6c, el control, estable. Los intervalos de las dos ejecuciones de N1 se solapan: la diferencia es compatible con el azar.</p>
+    <div class="scroll"><table><thead><tr><th class="num">Ejecución</th><th>Prueba</th><th>Clase</th><th class="num">Fallos</th><th class="num">Repeticiones</th><th class="num">Wilson 95 %</th></tr></thead><tbody id="tb-det"></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Catálogo de causas</h2>
+    <p class="muted" id="cat-intro"></p>
+    <div class="scroll"><table><thead><tr><th>ID</th><th>Causa</th><th>Fallos</th><th>Nota</th></tr></thead><tbody id="tb-cat"></tbody></table></div>
+  </section>
+
+  <footer class="muted">
+    Cifras copiadas de las salidas de las ejecuciones; los datos, con el comando de cada una, están en <a href="https://github.com/BasiMontes/flaky-test-lab/blob/main/resultados/resultados.json"><code>resultados/resultados.json</code></a>. Entorno: macOS, Chromium, Playwright 1.64.1, Toolshop en local con Docker. Solo Chromium, sin CI.
+  </footer>
+</main>
+
+<script type="application/json" id="datos">/*DATOS*/</script>
+<script>
+(function () {
+  var R = JSON.parse(document.getElementById('datos').textContent);
+  var nf = function (x) { return Number(x).toLocaleString('es-ES', {useGrouping: 'always'}); };
+  var dec = function (x, d) { return Number(x).toLocaleString('es-ES', {minimumFractionDigits: d, maximumFractionDigits: d}); };
+  function wilson(k, n) {
+    var p = k / n, z = 1.96, den = 1 + z * z / n, c = p + z * z / (2 * n), m = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n));
+    return [Math.max(0, (c - m) / den) * 100, Math.min(1, (c + m) / den) * 100];
+  }
+  var lab = {normal: 'Normal, 4 workers', w8: '8 workers', cpu4: 'CPU 4× más lenta', lat300: 'API +300 ms', lat1000: 'API +1000 ms'};
+  function set(id, t) { document.getElementById(id).textContent = t; }
+  function fila(tbId, celdas) {
+    var tr = document.createElement('tr');
+    celdas.forEach(function (c) {
+      var td = document.createElement('td'); td.textContent = c[0]; if (c[1]) td.className = c[1];
+      if (c[2]) td.style.background = c[2];
+      if (c[3]) { var b = document.createElement('span'); b.className = 'barra'; b.style.width = c[3] + 'px'; td.appendChild(b); }
+      tr.appendChild(td);
+    });
+    document.getElementById(tbId).appendChild(tr);
+  }
+  var REPS = R.meta.repeticiones_por_prueba;
+
+  set('t-n', nf(R.buenas.total_n)); set('t-f', nf(R.buenas.total_fallos));
+  var rep = R.pedido_p7.total_repeticiones;
+  set('t-p7', nf(rep.fallos));
+
+  R.buenas.ejecuciones.forEach(function (e) {
+    var nombre = lab[e.condicion] + (e.pruebas === 'P1-P3' ? ' (solo P1 a P3)' : '');
+    fila('tb-buenas', [[nombre], [nf(e.n), 'num'], [nf(e.fallos), 'num'], ['hasta ' + dec(wilson(e.fallos, e.n)[1], 2) + ' %', 'num'], [dec(e.minutos, 1), 'num']]);
+  });
+
+  R.pedido_p7.ejecuciones.forEach(function (e) {
+    fila('tb-p7', [[e.n === 1 ? '1 ejecución' : e.n + ' repeticiones'], [nf(e.n), 'num'], [nf(e.fallos), 'num']]);
+  });
+  var w7 = wilson(rep.fallos, rep.n);
+  set('p7-resumen', 'En las repeticiones: ' + nf(rep.fallos) + ' fallo de ' + nf(rep.n) + '. Intervalo de Wilson al 95 %: ' + dec(w7[0], 2) + ' a ' + dec(w7[1], 2) + ' %.');
+
+  set('ing-intro', 'Fallos de ' + nf(REPS) + ' repeticiones por celda. Pruebas escritas a propósito con un patrón malo. Más rojo, más fallos; «sin medir» es una celda que no se ejecutó.');
+  R.ingenuas.pruebas.forEach(function (p) {
+    var cs = [[p.id], [p.patron]];
+    ['normal', 'cpu4', 'lat300', 'lat1000'].forEach(function (c) {
+      var v = p.fallos[c];
+      if (v === null || v === undefined) cs.push(['sin medir', 'cel sin']);
+      else cs.push([nf(v), 'cel', 'color-mix(in srgb, var(--crit) ' + Math.round(v * 0.7) + '%, transparent)']);
+    });
+    fila('tb-ing', cs);
+  });
+  var n5 = R.ingenuas.pruebas.filter(function (p) { return p.id === 'N5'; })[0].aprobo_sin_comprobar;
+  Object.keys(n5).forEach(function (k) { fila('tb-n5', [[lab[k]], [nf(n5[k]) + ' de ' + nf(REPS), 'num']]); });
+
+  R.detector.ejecuciones.forEach(function (e) {
+    ['N1', 'N6c'].forEach(function (t) {
+      var d = e[t], w = wilson(d.fallos, d.n);
+      fila('tb-det', [[String(e.n_ejecucion), 'num'], [t], [d.clase, d.clase], [nf(d.fallos), 'num'], [nf(d.n), 'num'], [dec(w[0], 1) + ' a ' + dec(w[1], 1) + ' %', 'num']]);
+    });
+  });
+
+  set('cat-intro', 'Causas de inestabilidad reproducidas en páginas propias. Fallos de la versión inestable por ' + nf(REPS) + ' repeticiones; la versión estable no falló en ninguna salvo D1, que se lee al revés.');
+  R.catalogo.causas.forEach(function (c) {
+    fila('tb-cat', [[c.id], [c.causa], [nf(c.fallos), 'fallos', '', Math.max(2, c.fallos) * 0.6], [c.nota || '']]);
+  });
+})();
+</script>
+</body>
+</html>
