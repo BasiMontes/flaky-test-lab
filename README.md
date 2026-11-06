@@ -46,7 +46,7 @@ Estado: las 15 causas del catálogo (A1 a A5, B1 a B5, C1 a C4 y D1) están impl
 
 Además del catálogo, el repo mide flakiness contra una aplicación real: [Practice Software Testing (Toolshop)](https://github.com/testsmith-io/practice-software-testing), levantada en local con Docker (no se incluye su código; su licencia es de solo referencia). En `real-case/toolshop/` hay seis pruebas bien escritas y versiones «ingenuas» de las mismas, que usan a propósito patrones del catálogo (esperas fijas, `count()` inmediato, `.all()` sin esperar). Se miden con `--repeat-each=100` en condiciones normales y bajo presión (CPU 4 veces más lenta, API 300 ms más lenta).
 
-Resultado: las pruebas bien escritas no fallan en 2.700 ejecuciones. Las ingenuas fallan o aprueban sin comprobar según la presión (cifras en `real-case/toolshop/`). Es una sola medición de cada una; no demuestra que las pruebas buenas sean robustas en general.
+Resultado: las pruebas bien escritas no fallan en 3.000 ejecuciones (6 pruebas × 100 repeticiones × 5 condiciones: normal, 8 workers, CPU 4× más lenta, API +300 ms y API +1000 ms). Las ingenuas fallan o aprueban sin comprobar según la presión (cifras en `real-case/toolshop/`). Es una sola medición de cada una; no demuestra que las pruebas buenas sean robustas en general.
 
 ## Cómo medir
 
